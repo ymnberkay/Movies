@@ -43,9 +43,7 @@ The project is organized into the following main components:
 - **ViewModels:** Handles the business logic and data manipulation for the views.
 - **Controllers:** Manages the app flow and interacts with the view models.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
