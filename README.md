@@ -43,7 +43,13 @@ The project is organized into the following main components:
 - **ViewModels:** Handles the business logic and data manipulation for the views.
 - **Controllers:** Manages the app flow and interacts with the view models.
 
+## Screenshots
 
+### Home Screen
+![Home Screen](screenshots/home_screen.png)
+
+### Movie Details
+![Movie Details](screenshots/movie_details.png)
 
 ## Author
 
