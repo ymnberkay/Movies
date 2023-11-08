@@ -8,24 +8,12 @@
 import UIKit
 import Kingfisher
 
-class ViewController: UIViewController, MovieViewModelOutput {
+class ViewController: UIViewController {
     
     private var names: [String] = []
     private var years: [String] = []
     private var imdbID: [String] = []
     private var posters: [String] = []
-    
-    func updateView(names: [Search]) {
-        self.names = names.compactMap { $0.title }
-        self.years = names.compactMap { $0.year }
-        self.imdbID = names.compactMap { $0.imdbID }
-        self.posters = names.compactMap { $0.poster }
-        
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
     
     private let viewModel: MoviesViewModel
     
@@ -68,7 +56,11 @@ class ViewController: UIViewController, MovieViewModelOutput {
     }()
     
     private let noResultLabel: UILabel =  {
-        let label = UILabel
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
@@ -98,6 +90,7 @@ class ViewController: UIViewController, MovieViewModelOutput {
         view.backgroundColor = .black
         view.addSubview(searchBar)
         view.addSubview(tableView)
+        view.addSubview(noResultLabel)
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: screenHeight * 0.12),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth * 0.01),
@@ -108,6 +101,11 @@ class ViewController: UIViewController, MovieViewModelOutput {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth * 0.01),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(screenWidth * 0.01)),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 50),
+            
+            noResultLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: screenHeight * 0.3),
+            noResultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth * 0.01),
+            noResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(screenWidth * 0.01)),
+            noResultLabel.heightAnchor.constraint(equalToConstant: screenHeight * 0.12),
             
             
         ])
@@ -122,7 +120,28 @@ class ViewController: UIViewController, MovieViewModelOutput {
             navigationController?.navigationBar.titleTextAttributes = attributes
         }
     }
+}
 
+extension ViewController: MovieViewModelOutput {
+    
+    func updateView(names: [Search]) {
+        self.names = names.compactMap { $0.title }
+        self.years = names.compactMap { $0.year }
+        self.imdbID = names.compactMap { $0.imdbID }
+        self.posters = names.compactMap { $0.poster }
+        
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            if self.names.isEmpty {
+                self.noResultLabel.text = "No movie found"
+            } else {
+                self.noResultLabel.text = ""
+            }
+            
+        }
+    }
+    
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -135,6 +154,7 @@ extension ViewController: UISearchBarDelegate {
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
+           
         }
     }
 }

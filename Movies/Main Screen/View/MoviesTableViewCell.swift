@@ -41,6 +41,7 @@ class MoviesTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .black
         addSubview(cellImageView)
@@ -48,20 +49,18 @@ class MoviesTableViewCell: UITableViewCell {
         addSubview(subtitleLabel)
         
         NSLayoutConstraint.activate([
-            cellImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cellImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             cellImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            cellImageView.widthAnchor.constraint(equalToConstant: 120),
-            cellImageView.heightAnchor.constraint(equalToConstant: 200),
+            cellImageView.widthAnchor.constraint(equalToConstant: screenWidth * 0.33),
+            cellImageView.heightAnchor.constraint(equalToConstant: screenHeight * 0.25),
             
             titleLabel.topAnchor.constraint(equalTo: topAnchor,constant: 50),
-            titleLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 10),
-            titleLabel.widthAnchor.constraint(equalToConstant: 100),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 30),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subtitleLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 10),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            subtitleLabel.widthAnchor.constraint(equalToConstant: 100),
+            subtitleLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 30),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
         ])
     }
     
