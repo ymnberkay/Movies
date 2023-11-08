@@ -46,10 +46,16 @@ The project is organized into the following main components:
 ## Screenshots
 
 ### Home Screen
-![Home Screen](screenshots/home_screen.png)
+<div style="display:flex;">
+  <img src="https://github.com/ymnberkay/Movies/assets/73296405/9955b8c3-bd3d-4b89-aa32-4d9defcd9566" style="width:250px; margin-right:20px;">
+  <img src="https://github.com/ymnberkay/Movies/assets/73296405/b2525e35-78ad-475c-9db6-122d17194d7c" style="width:250px; margin-right:20px;">
+  <img src="https://github.com/ymnberkay/Movies/assets/73296405/ca887f8e-9555-4747-ac49-2a856c171c7e" style="width:250px;">
+</div>
+
 
 ### Movie Details
-![Movie Details](screenshots/movie_details.png)
+<img src="https://github.com/ymnberkay/Movies/assets/73296405/4562476c-e925-4a00-bdb9-8307fffc8d43" width="250">
+
 
 ## Author
 
